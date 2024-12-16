@@ -1,4 +1,5 @@
 **/out/
 **/.ipynb_checkpoints/
+/rating_data/.ipynb_checkpoints/
 **/__pycache__/
 *.sub
