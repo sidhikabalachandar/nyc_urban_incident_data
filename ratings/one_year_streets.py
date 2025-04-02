@@ -2,8 +2,6 @@ import argparse
 import pandas as pd
 import geopandas as gpd
 from shapely import wkt
-import matplotlib.pyplot as plt
-import statsmodels.api as sm
 import sys
 import os
 sys.path.append(os.path.abspath(".."))
@@ -22,24 +20,18 @@ def main():
     rating_data_path = '/share/garg/311_data/sb2377_a_data/streets/Street_Pavement_Rating_20240309.csv'
     report_data_path = '/share/garg/311_data/sb2377/clean_codebase/data_{}.csv'.format(year)
     preprocessed_report_data_path = '/share/garg/311_data/sb2377/clean_codebase/processed_street_condition_{}.csv'.format(year)
-    covars_path = '/share/garg/311_data/sb2377/clean_codebase/tract_demographics.csv'
-    save_path = '/share/garg/311_data/sb2377/clean_codebase/processed_streets_{}.csv'.format(year)
     
     complaint_type = 'Street Condition'
-    reported_label = 'reported'
-    heuristic_distance_cutoff = 250
-    inspection_indicator = 'has_inspection_{}'.format(heuristic_distance_cutoff)
     rename_map = {'Inspection': 'date', 
                   'the_geom': 'finegrained_geometry',
                   'SegmentID': 'finegrained_id',
                   'ManualRati': 'score'
                  }
     
-    covariates_arr = pd.read_csv(covars_path)
     df = pd.read_csv(rating_data_path)
     df_311 = pd.read_csv(report_data_path)
     
-    census_gdf, final_graph, census_gdf_raw = generate_graph_census()
+    census_gdf, _, _ = generate_graph_census()
     census_gdf = census_gdf.to_crs('EPSG:2263')
     
     # process rating data

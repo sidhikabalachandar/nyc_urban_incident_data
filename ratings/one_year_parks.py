@@ -2,8 +2,6 @@ import argparse
 import pandas as pd
 import geopandas as gpd
 from shapely import wkt
-import matplotlib.pyplot as plt
-import statsmodels.api as sm
 import sys
 import os
 sys.path.append(os.path.abspath(".."))
@@ -22,25 +20,19 @@ def main():
     rating_data_path = '/share/garg/311_data/sb2377_a_data/parks/Parks_Inspection_Program___Inspections_20240316.csv'
     report_data_path = '/share/garg/311_data/sb2377/clean_codebase/data_{}.csv'.format(year)
     preprocessed_report_data_path = '/share/garg/311_data/sb2377/clean_codebase/processed_maintenance_or_facility_{}.csv'.format(year)
-    covars_path = '/share/garg/311_data/sb2377/clean_codebase/tract_demographics.csv'
     all_parks_path = '/share/garg/311_data/sb2377_a_data/parks/Parks_Inspection_Program___All_Sites__MAPPED__20240316.csv'
-    save_path = '/share/garg/311_data/sb2377/clean_codebase/processed_parks_{}.csv'.format(year)
     
     complaint_type = 'Maintenance or Facility'
-    reported_label = 'reported'
-    heuristic_distance_cutoff = 50
-    inspection_indicator = 'has_inspection_{}'.format(heuristic_distance_cutoff)
     rename_map = {'Date': 'date', 
                   'Multipolygon': 'finegrained_geometry',
                   'Prop ID': 'finegrained_id'
                  }
     
-    covariates_arr = pd.read_csv(covars_path)
     parks_df = pd.read_csv(all_parks_path)
     df = pd.read_csv(rating_data_path)
     df_311 = pd.read_csv(report_data_path)
     
-    census_gdf, final_graph, census_gdf_raw = generate_graph_census()
+    census_gdf, _, _ = generate_graph_census()
     census_gdf = census_gdf.to_crs('EPSG:2263')
     
     # process list of all parks
@@ -91,8 +83,6 @@ def main():
     one_year_df = one_year_df[['finegrained_id', 'date', 'week', 'GEOID', 'score']]
     one_year_df = one_year_df.dropna() # remove rows that did not match into any census tract
     one_year_df = one_year_df.groupby(['finegrained_id', 'week', 'GEOID', 'date'])['score'].mean().reset_index()
-
-    rating_df = one_year_df
     
     # process reporting data
     # get data for type
