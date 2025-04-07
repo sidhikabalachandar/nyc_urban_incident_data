@@ -5,7 +5,7 @@ from shapely import wkt
 import sys
 import os
 sys.path.append(os.path.abspath(".."))
-from utils import *
+from utils.utils import *
 
 def get_args():
     parser = argparse.ArgumentParser()
