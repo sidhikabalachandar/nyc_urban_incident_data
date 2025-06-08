@@ -5,6 +5,9 @@ We share here a real heterogenous dataset for an urban incident prediction task.
 
 To our knowledge, prior urban prediction work has not considered the dual challenges and benefits of jointly learning from both types of available data---one reason is the lack of processed data, combining reports and ratings across types. To address this limitation, we provide here large-scale preprocessed data of reports and ratings from New York City. Our dataset is composed of 9,615,863 crowdsourced reports across 139 incident types and 1,041,415 government inspection ratings across 5 incident types. Beyond urban prediction, this data can also be used by other researchers to study data bias in urban applications. In particular, comparing the biased reporting data to the unbiased rating data can reveal the biased patterns of underreporting in an urban area.
 
+# What tasks can this data be used for?
+This data can be used to build urban incident prediction models and to investigate patterns of underreporting in crowdsourced reporting data. More broadly, this dataset serves as an ideal setting in which to study distribution shifts over time. Additionally, since new raw rating and reporting data is continuously available, this setting has the additional benefit of having an automatic source of uncontaminated test sets.
+
 # Preprocessed data
 We provide our preprocessed data in `\data`. This folder contains two files:
 
@@ -46,6 +49,3 @@ We provide code to combine ratings and reports in `combine_ratings_and_reports/`
 
 ## Getting updated data
 One advantage of this dataset is that new reporting and rating data is available on OpenData daily. The second cell in each data processing notebook allows users to specify the paths of locally downloaded raw data files. Thus users can easily run the data processing pipeline with updated NYC data. 
-
-# What tasks can this data be used for?
-This data can be used to build urban incident prediction models and to investigate patterns of underreporting in crowdsourced reporting data. More broadly, this dataset serves as an ideal setting in which to study distribution shifts over time. Additionally, since new raw rating and reporting data is continuously available, this setting has the additional benefit of having an automatic source of uncontaminated test sets.
