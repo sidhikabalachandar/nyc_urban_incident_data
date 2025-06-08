@@ -25,10 +25,7 @@ This file contains rating and reporting data rom 2292 census tracts, from 139 co
 This file contains mappings between each node_idx and the corresponding GEOID (census tract identifier) and each type_idx and the corresponding complaint type and New York City agency.
 
 # Preprocessing code
-We also provide our preprocessing code. Our data processing consists of three steps:
-(i) We process reports from raw NYC 311 data.
-(ii) We process ratings from raw NYC goverment rating data.
-(iii) We combine ratings and reports into a single processed data file.
+We also provide our preprocessing code.
 
 ## Processing reports
 Our code to process the reporting data is provided in `reports/`. We obtain raw [NYC 311 service request data](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9/about_data) from the NYC OpenData platform. We transform reports into *indicators* of whether a report of a particular type was observed in a Census tract during a particular week. 
