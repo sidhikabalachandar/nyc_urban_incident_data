@@ -39,7 +39,7 @@ We provide ratings for five different incident types: (i) street conditions, (ii
 - [DCWP inspections](https://data.cityofnewyork.us/Business/Department-of-Consumer-and-Worker-Protection-DCWP-/jzhd-m6uv)
 
 ## Processing demographic data
-We use demographic data from the [Census](https://data.census.gov/). The code to process the demographic features we use is provided in `demographics.ipynb`.
+We use demographic data from the [Census](https://data.census.gov/). The code to process the demographic features we use is provided in `utils/demographics.ipynb`.
 
 ## Combining ratings and reports
 We provide code to combine ratings and reports in `combine_ratings_and_reports/` by matching ratings and reports across nodes, incident types, and weeks. 
