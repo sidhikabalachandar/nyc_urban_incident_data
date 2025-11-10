@@ -15,6 +15,8 @@ We provide ratings for five different incident types: (i) street conditions, (ii
 - [Restaurant inspections](https://data.cityofnewyork.us/Health/DOHMH-New-York-City-Restaurant-Inspection-Results/43nn-pn8j)
 - [DCWP inspections](https://data.cityofnewyork.us/Business/Department-of-Consumer-and-Worker-Protection-DCWP-/jzhd-m6uv)
 
+We ensure that the inspections are not susceptible to bias. Selection bias can occur if an inspection is conducted in response to a crowdsourced report. We process the inspection data to only use inspections *not* conducted in response to crowdsourced reports. For most types, the data dictionary verifies that inspections are *not* run in response to reports. Only for rodents do we filter out responsive inspections. We validate: (i) Ratings are lower for filtered inspections. (ii) For a given block, ratings are lower during weeks with reactive inspections. (iii) There is less time between a report and inspection for filtered inspections. Thus unfiltered inspections are *less* likely to be responsive and are not skewed to worse ratings.
+
 ## Demographic data
 We use demographic data from the [Census](https://data.census.gov/). The code to process the demographic features we use is provided in `demographics.ipynb'.
 
